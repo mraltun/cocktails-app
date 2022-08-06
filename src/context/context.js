@@ -1,7 +1,13 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  createContext,
+} from "react";
 
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
-const AppContext = React.createContext();
+const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -40,7 +46,7 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     fetchDrinks();
-  }, []);
+  }, [searchTerm]);
 
   return (
     <AppContext.Provider value={{ loading, cocktails, setSearchTerm }}>
